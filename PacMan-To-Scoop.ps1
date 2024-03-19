@@ -3,17 +3,22 @@ function Run-Pacman {
         [string]$Args
     )
 
-    switch -Wildcard ($Args) {
+    $command, $packageName = $Args.Split(" ", 2)
+
+    switch -Wildcard ($command) {
         "-Syu" {
             scoop update
+            if (![string]::IsNullOrWhiteSpace($packageName)) {
+                Invoke-Expression "scoop install $packageName"
+            }
             break
         }
-        "-S *" {
+        "-S" {
             $packageName = $Args.Substring(3).Trim()
             Invoke-Expression "scoop install $packageName"
             break
         }
-        "-R *" {
+        "-R" {
             $packageName = $Args.Substring(3).Trim()
             Invoke-Expression "scoop uninstall $packageName"
             break
@@ -22,24 +27,23 @@ function Run-Pacman {
             scoop list
             break
         }
-        "-Qi *" {
+        "-Qi" {
             $packageName = $Args.Substring(4).Trim()
             Invoke-Expression "scoop info $packageName"
             break
         }
-        "-Qs *" {
+        "-Qs" {
             $query = $Args.Substring(4).Trim()
             Invoke-Expression "scoop search $query"
             break
         }
-        
-        "-Si *" {
+        "-Si" {
             $packageName = $Args.Substring(4).Trim()
             Invoke-Expression "scoop info $packageName"
             break
         }
         default {
-            Write-Host "Unsupported pacman command: $Args"
+            Write-Host "Unsupported pacman command: $command"
             break
         }
     }
