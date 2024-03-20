@@ -42,6 +42,37 @@ function Run-Pacman {
             Invoke-Expression "scoop info $packageName"
             break
         }
+        "-Px" {
+            $packageName = $Args.Substring(4).Trim()
+            Invoke-Expression "scoop prefix $packageName"
+            break
+        }
+        "-Ds" {
+            $packageName = $Args.Substring(4).Trim()
+            Invoke-Expression "scoop depends $packageName"
+            break
+        }
+        
+        "-H" {
+            $packageName = $Args.Substring(4).Trim()
+            Invoke-Expression "scoop checkup $packageName"
+            break
+        }
+        "-Ce" {
+            $packageName = $Args.Substring(4).Trim()
+            Invoke-Expression "scoop cache"
+            break
+        }
+        "-Purr" {
+            $packageName = $Args.Substring(4).Trim()
+            Invoke-Expression "scoop cat $packageName"
+            break
+        }
+        "-Rt" {
+            $packageName = $Args.Substring(4).Trim()
+            Invoke-Expression "scoop reset $packageName"
+            break
+        }
         default {
             Write-Host "Unsupported pacman command: $command"
             break
