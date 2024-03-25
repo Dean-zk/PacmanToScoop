@@ -1,4 +1,4 @@
-# Syntacticly Awsome Package-Manager
+# syntactically Awsome Package-Manager
 
 A silly little project where I made the scoop package manager syntax more simple to use.
 
