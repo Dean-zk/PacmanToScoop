@@ -8,14 +8,27 @@ function Sap-Flags {
     switch -Wildcard ($command) {
         "-Syu" {
             scoop update
+            
             if (![string]::IsNullOrWhiteSpace($packageName)) {
-                Invoke-Expression "scoop install $packageName"
+                if ($packageName -eq "emacs") {
+                    Invoke-Expression "scoop install neovim"
+                }
+                else {
+                    Invoke-Expression "scoop install $packageName"
+                }
             }
+            
             break
         }
         "-S" {
             $packageName = $Args.Substring(3).Trim()
-            Invoke-Expression "scoop install $packageName"
+            if ($packageName -eq "emacs") {
+                    Invoke-Expression "scoop install neovim"
+                }
+                else {
+                    Invoke-Expression "scoop install $packageName"
+                }
+
             break
         }
         "-R" {
@@ -103,4 +116,8 @@ function Sap-Flags {
 }
 
 Set-Alias -Name sap -Value Sap-Flags
-
+# For people who don't understand:
+# I removed the ability to download Emacs with sap.
+# Why? Because F*ck Emacs >:(
+# Learn a text editor, you already have a OS.
+Set-Alias -Name emacs -Value nvim
