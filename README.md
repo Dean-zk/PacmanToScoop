@@ -1,6 +1,6 @@
 # Syntacticly Awsome Package-Manager
 
-A silly little project where I added the syntax of Pacman (Arch linux package manager) to the scoop package manager.
+A silly little project where I made the scoop package manager syntax more simple to use.
 
 # How to use it?
 
@@ -15,7 +15,7 @@ If you don't have this file then enter this command:
 New-Item -Path $PROFILE -Type File -Force
 ```
 # Why should I use it:
-It is just for more concise systax. I love scoop, but the syntax is kinda long.
+It is just for a more concise systax. I love scoop, but the syntax is kinda long.
 For example, here is how to update and download a package in scoop:
 ```bash
 scoop update && scoop install <package name>
